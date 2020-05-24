@@ -8,7 +8,8 @@ on:
 
 jobs:
   build:
-
+    env:
+      working-directory: ./DesignPatterns
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +20,10 @@ jobs:
         dotnet-version: 3.1.101
     - name: Install dependencies
       run: dotnet restore
+      working-directory: ${{env.working-directory}}
     - name: Build
       run: dotnet build --configuration Release --no-restore
+      working-directory: ${{env.working-directory}}
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+      working-directory: ${{env.working-directory}}
